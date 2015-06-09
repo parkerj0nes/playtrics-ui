@@ -190,6 +190,7 @@
     <Content Include="app\layout\widgetheader.html" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
+    <Content Include="app\common\widget\timeseries\timeseries.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -358,6 +359,7 @@
     <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\common\widget\datatable\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

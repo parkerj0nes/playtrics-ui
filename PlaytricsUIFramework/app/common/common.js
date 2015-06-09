@@ -41,7 +41,8 @@
             debouncedThrottle: debouncedThrottle,
             isNumber: isNumber,
             logger: logger, // for accessibility
-            textContains: textContains
+            textContains: textContains,
+            config: commonConfig.config
         };
 
         return service;

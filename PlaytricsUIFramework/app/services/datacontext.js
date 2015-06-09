@@ -10,10 +10,34 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
-            getPrivacyCompareData: getPrivacyCompareData
+            GameSessions: GameSessions
         };
 
         return service;
+        
+        function getDataPromise(DataCallAttrs) {
+            var deferral = $q.defer();
+            //console.log("in GetData promise")
+            var successFn = function (data) {
+                var eventArgs = {
+                    moduleId: DataCallAttrs.moduleName,
+                    controllerId: DataCallAttrs.controllerName,
+                    widgetId: DataCallAttrs.widgetName
+                };
+                common.$broadcast(common.config.ajaxSuccess, eventArgs);
+                $.extend(data, eventArgs);
+                DataCallAttrs.ajaxCallback.apply(this, data);
+                deferral.resolve(data);
+            }
+
+            $.ajax({
+                url: DataCallAttrs.url,
+                crossDomain: true,
+                success: successFn
+            })
+
+            return $q.when(deferral.promise);
+        }
 
         function getMessageCount() { return $q.when(72); }
 
@@ -29,21 +53,39 @@
             ];
             return $q.when(people);
         }
-        function getPrivacyCompareData() {
-            var deferral = $q.defer();
 
-            var successFn = function (data) {
-                console.log(data);
-                deferral.resolve(data);
+        function GameSessions() {
+            var moduleName = "GameSessions";
+
+            var privacyCompare = function (attrs) {
+                var widgetName = "PrivacyCompare"
+                var dataUrl = 'http://localmonitoring.playverse.com:7552/Game/PrivacyChartData?game=DD2&region=USEast_NorthVirg&interval=15&start=2015-06-09T04:00:00.000Z&end=2015-06-09T19:38:55.639Z'
+
+                var DataCallAttrs = {
+                    moduleName: (moduleName) ? moduleName :  null,
+                    widgetName: (widgetName) ? widgetName : null,
+                    controllerName: (attrs && attrs.controllerId) ? attrs.controllerId : null,
+                    url: dataUrl,
+                    ajaxCallback: function (data) {
+                        console.log("ajax called here is the object %o", this);
+                        if (attrs && attrs.callback) {
+                            attrs.callback.apply(this, data);
+                        }
+                    }
+                }
+
+                $.extend(DataCallAttrs, attrs);
+
+                return getDataPromise(DataCallAttrs);
             }
 
-            $.ajax({
-                url: 'http://localmonitoring.playverse.com:7552/Game/PrivacyChartData?game=DD2&region=USEast_NorthVirg&interval=15&start=2015-06-08T04:00:00.000Z&end=2015-06-08T20:45:30.179Z',
-                crossDomain: true,
-                success: successFn
-            })
 
-            return $q.when(deferral.promise);
-        }
+            return {
+                privacyCompare: privacyCompare
+            }
+        
+        };
+
     }
+
 })();
