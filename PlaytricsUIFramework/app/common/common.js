@@ -128,5 +128,9 @@
         function textContains(text, searchText) {
             return text && -1 !== text.toLowerCase().indexOf(searchText.toLowerCase());
         }
+
+        //function GetDatatables() {
+        //    return dt;
+        //}
     }
 })();
