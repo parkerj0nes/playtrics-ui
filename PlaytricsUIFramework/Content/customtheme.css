@@ -253,7 +253,7 @@ a.btn {
 
 
 .blightblue {
-    background: #52b9e9 !important;
+    background: #5789ac !important;
     color: #fff !important;
     border: 0 !important;
 }
@@ -643,7 +643,7 @@ form {
     .sidebar .navi > li.nlightblue > a:hover,
     .sidebar .navi > li.open.nlightblue > a,
     .sidebar .navi > li.current.nlightblue > a {
-        background: #52b9e9 !important;
+        background: #5789ac !important;
         -webkit-transition: background 0.5s ease;
         -moz-transition: background 0.5s ease;
         -o-transition: background 0.5s ease;
@@ -948,13 +948,19 @@ form {
         border: 1px solid #932ab6;
         color: #fff;
     }
+    .widget.wpvred .widget-head {
+        background-color: #bd272e;
+        border-color: #bd272e;
+        color: #fff;
+    }
 
         .widget.wred .widget-head .widget-icons a,
         .widget.wblue .widget-head .widget-icons a,
         .widget.wlightblue .widget-head .widget-icons a,
         .widget.worange .widget-head .widget-icons a,
         .widget.wgreen .widget-head .widget-icons a,
-        .widget.wviolet .widget-head .widget-icons a {
+        .widget.wviolet .widget-head .widget-icons a,
+        .widget.wpvred .widget-head .widget-icons a  {
             color: #fff;
         }
 
@@ -963,7 +969,8 @@ form {
             .widget.wlightblue .widget-head .widget-icons a:hover,
             .widget.worange .widget-head .widget-icons a:hover,
             .widget.wgreen .widget-head .widget-icons a:hover,
-            .widget.wviolet .widget-head .widget-icons a:hover {
+            .widget.wviolet .widget-head .widget-icons a:hover,
+            .widget.wpvred .widget-head .widget-icons a:hover {
                 color: #eee;
             }
 
