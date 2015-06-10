@@ -52,10 +52,12 @@ namespace PlaytricsUIFramework
 
                     "~/Scripts/DataTables/angular-datatables/angular-datatables.js"
                 ));
-
+            bundles.Add(new ScriptBundle("~/bundles/dashboard-angular").Include(
+                "~/Scripts/dashboard-framework/dist/malhar-angular-dashboard.js"
+                ));
             //styles
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
-
+            bundles.Add(new StyleBundle("~/Content/css/dashboard").Include("~/Scripts/dashboard-framework/dist/malhar-angular-dashboard.css"));
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
@@ -69,6 +71,11 @@ namespace PlaytricsUIFramework
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+            
+            bundles.Add(new StyleBundle("~/Content/DataTables/css").Include(
+                      "~/Content/jquery.dataTables.css"
+                ));
+
         }
     }
 }

@@ -6,13 +6,15 @@
         'ngAnimate',        // animations
         'ngRoute',          // routing
         'ngSanitize',       // sanitizes html bindings (ex: sidebar.js)
+        'ui.sortable',
         'datatables',
         // Custom modules 
         'common',           // common functions, logger, spinner
         'common.bootstrap', // bootstrap dialog wrapper functions
 
         // 3rd Party Modules
-        'ui.bootstrap'      // ui-bootstrap (ex: carousel, pagination, dialog)
+        'ui.bootstrap',      // ui-bootstrap (ex: carousel, pagination, dialog),
+        'ui.dashboard'
     ]);
     
     // Handle routing errors and success events

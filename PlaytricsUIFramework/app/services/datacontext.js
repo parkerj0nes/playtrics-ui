@@ -67,9 +67,12 @@
                     controllerName: (attrs && attrs.controllerId) ? attrs.controllerId : null,
                     url: dataUrl,
                     ajaxCallback: function (data) {
-                        console.log("ajax called here is the object %o", this);
+                        //console.log("ajax called here is the object %o", this);
+                        //I want your code inside me
+
                         if (attrs && attrs.callback) {
-                            attrs.callback.apply(this, data);
+                            //this is where we're camming the passed in function that adds more stuff to this function
+                            attrs.callback.apply(this, arguments);
                         }
                     }
                 }
