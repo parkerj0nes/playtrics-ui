@@ -10,7 +10,8 @@
         var service = {
             getPeople: getPeople,
             getMessageCount: getMessageCount,
-            GameSessions: GameSessions
+            GameSessions: GameSessions,
+            GameEconomy: GameEconomy
         };
 
         return service;
@@ -89,6 +90,39 @@
         
         };
 
+        function GameEconomy() {
+            var moduleName = "GameEconomy";
+
+            var coinFlow = function (attrs) {
+                var widgetName = "coinFlow"
+                var dataUrl = 'http://localmonitoring.playverse.com:7552/Economy/GetCoinFlowMacro?game=DD2&region=0&interval=15&start=2015-04-28T00:00:00.000Z&end=2015-05-28T16:16:14.950Z'
+
+                var DataCallAttrs = {
+                    moduleName: (moduleName) ? moduleName : null,
+                    widgetName: (widgetName) ? widgetName : null,
+                    controllerName: (attrs && attrs.controllerId) ? attrs.controllerId : null,
+                    url: dataUrl,
+                    ajaxCallback: function (data) {
+                        //console.log("ajax called here is the object %o", this);
+                        //I want your code inside me
+
+                        if (attrs && attrs.callback) {
+                            //this is where we're camming the passed in function that adds more stuff to this function
+                            attrs.callback.apply(this, arguments);
+                        }
+                    }
+                }
+
+                $.extend(DataCallAttrs, attrs);
+
+                return getDataPromise(DataCallAttrs);
+            }
+
+
+            return {
+                coinFlow: coinFlow
+            }
+        }
     }
 
 })();

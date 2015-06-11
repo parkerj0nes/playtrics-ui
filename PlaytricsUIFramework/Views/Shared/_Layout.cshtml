@@ -51,7 +51,7 @@
         <script src="scripts/moment.js"></script>
         <script src="scripts/ui-bootstrap-tpls-0.10.0.js"></script>
         <script src="scripts/spin.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        <script src="scripts/lodash.js"></script>
 
         @Scripts.Render("~/bundles/Keen")
         @Scripts.Render("~/bundles/datatables")
@@ -70,7 +70,7 @@
         <script src="app/common/common.js"></script>
         <script src="app/common/logger.js"></script>
         <script src="app/common/spinner.js"></script>
-
+        <script src="app/common/widget/widgetOptionFactories.js"></script>
         <!-- common.bootstrap Modules -->
         <script src="app/common/bootstrap/bootstrap.dialog.js"></script>
 
@@ -79,10 +79,15 @@
         <script src="app/dashboard/dashboard.js"></script>
         <script src="app/layout/shell.js"></script>
         <script src="app/layout/sidebar.js"></script>
-
+        
         <!-- app Services -->
         <script src="app/services/datacontext.js"></script>
         <script src="app/services/directives.js"></script>
+        <!-- widgets -->
+
+        <script src="app/common/widget/timeseries/timeseries.js"></script>
+        <script src="app/common/widget/datatable/datatable.js"></script>
+        @*<script src="app/common/widget/timeseries/timeseries.js"></script>*@
         @RenderSection("scripts", required: false)
     </body>
 </html>

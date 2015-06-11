@@ -65,8 +65,7 @@
                 //use this to send off the events as a string to somewhere
                 //var weirdJsonString = JSON.stringify(JSON.parse(angular.toJson(event)), null, 2);
 
-                console.log("broadcast");
-                console.log(event);
+                console.log("[broadcast] : %o", event);
                 return returnVal;
             };
             Scope.prototype.$emit = function (name, args) {
@@ -80,8 +79,7 @@
                 //use this to send off the events as a string to somewhere
                 //var weirdJsonString = JSON.stringify(JSON.parse(angular.toJson(event)), null, 2);
 
-                console.log("emit");
-                console.log(event);
+                console.log("[emit] : %o", event);
                 return returnVal;
             };
             return $delegate;

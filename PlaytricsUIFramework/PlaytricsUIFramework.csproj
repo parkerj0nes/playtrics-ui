@@ -179,10 +179,15 @@
     <Content Include="app\common\spinner.js" />
     <Content Include="app\common\widget\configurableWidgetModalOptions.html" />
     <Content Include="app\common\widget\customSettingsTemplate.html" />
+    <Content Include="app\common\widget\datatable\datatable.js" />
+    <Content Include="app\common\widget\datatable\playtable.html" />
     <Content Include="app\common\widget\fluid.html" />
     <Content Include="app\common\widget\layouts.html" />
     <Content Include="app\common\widget\resizable.html" />
+    <Content Include="app\common\widget\timeseries\ChartOptionsModal.html" />
+    <Content Include="app\common\widget\timeseries\playchart.html" />
     <Content Include="app\common\widget\view.html" />
+    <Content Include="app\common\widget\widgetOptionFactories.js" />
     <Content Include="app\common\widget\widgetSpecificSettings.html" />
     <Content Include="app\config.exceptionHandler.js" />
     <Content Include="app\config.js" />
@@ -481,6 +486,7 @@
     <Content Include="Scripts\Keen\meta.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\malhar-angular-dashboard.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-langs.js" />
@@ -524,7 +530,6 @@
     <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\common\widget\datatable\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

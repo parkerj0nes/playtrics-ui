@@ -190,13 +190,108 @@
                 'rightText': '@',
                 'allowCollapse': '@'
             },
-            templateUrl: '/app/layout/widgetheader.html',
+            templateUrl: 'app/layout/widgetheader.html',
             restrict: 'A',
         };
         return directive;
 
         function link(scope, element, attrs) {
             attrs.$set('class', 'widget-head');
+        }
+    });
+    app.directive('modaloptions', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'app/common/widget/timeseries/ChartOptionsModal.html',
+            replace: true,
+            scope: true,
+            controller: 'ModalCtrl',
+            link: function (scope, element, attrs) {
+
+            }
+        };
+    });
+
+    app.directive('playchart', function (datacontext) {
+
+        var directive = {
+            restrict: 'A',
+            controller: 'timeseries as vm',
+            templateUrl: "app/common/widget/timeseries/playchart.html",
+            link: link
+        };
+
+        function link(scope, element, attrs) {
+            console.log("link function");
+            var GameEconomy = datacontext.GameEconomy();
+            
+            GameEconomy.coinFlow().then(function (data) {
+
+                var SeriesFactory = function (TimeSeries) {
+
+                    if (TimeSeries.Type == "Purchase") {
+                        var series = {
+                            pointStart: TimeSeries.StartDate,
+                            pointInterval: TimeSeries.interval, // one day
+                            stack: 'aggregate',
+                            name: "Outflow",
+                            data: $.map(TimeSeries.coinData, function (x) {
+                                return -x;
+                            })
+                        };
+                    } else if (TimeSeries.Type == "AddCredits") {
+                        var series = {
+                            pointStart: TimeSeries.StartDate,
+                            pointInterval: TimeSeries.interval, // one day
+                            stack: 'aggregate',
+                            name: "Inflow",
+                            data: TimeSeries.coinData
+                        };
+                    }
+                    console.log(series);
+                    return series;
+                }
+
+
+                var processAggregates = function (results) {
+                    var s = [];
+                    //console.log("in processing function: %o", results);
+                    if ((results.hasOwnProperty("Inflows") && results.Inflows.length > 0) ||
+                        (results.hasOwnProperty("Outflows") && results.Outflows.length > 0)) {
+                        $.each(results.Inflows, function (idx, flowData) {
+                            scope.vm.ChartConfig.series.push(SeriesFactory(flowData));
+                            //console.log(flowData);
+                        });
+                        $.each(results.Outflows, function (idx, flowData) {
+                            scope.vm.ChartConfig.series.push(SeriesFactory(flowData));
+                            //console.log(flowData);
+                        });
+                    } else {
+                        //$rootScope.$broadcast('NoData');
+                        console.log("no data");
+                    }
+                }
+
+
+                var onSuccess = function (results) {
+                    var CAT_PROCESS = false;
+
+                    if (!CAT_PROCESS) {
+                        processAggregates(results);
+                    }
+                    //console.log(results);
+                }
+                //return scope.vm.series = data;
+                onSuccess(data);
+            });
+        }
+
+        return directive;
+    });
+
+    app.directive('pvChartConfig', function () {
+        return {
+            controller: function ($scope) { }
         }
     });
 })();
